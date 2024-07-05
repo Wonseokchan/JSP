@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="member.MemberMapper">
+	<select id="selectMembers" resultType="member.MemberVO">
+		SELECT id, email, password, name, register_date FROM member order by id
+	</select>
+	<select id="selectMember" parameterType="long" resultType="member.MemberVO">SELECT id, email, password, name, register_date FROM member WHERE id = #{id} </select>
+	<insert id="insertMember" parameterType="member.MemberVO">INSERT INTO member (email, password, name) VALUES( #{email}, #{password}, #{name} )</insert>
+	<update id="updateMember" parameterType="member.MemberVO">UPDATE member SET email= #{email}, password = #{password}, name = #{name} WHERE id = #{id}</update>
+	<delete id="deleteMember" parameterType="long">DELETE FROM member WHERE id = #{id}</delete>
+</mapper>
