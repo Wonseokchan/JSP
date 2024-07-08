@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="book.BookMapper">
+	<select id="selectBooks" resultType="book.BookVO">
+		SELECT id, title, price,
+		author, description, publisher,category, quantity, release_date,
+		condition, image_filename FROM book
+	</select>
+	<select id="selectBook" parameterType="string" resultType="book.BookVO"> SELECT id, title, price,
+		author, description, publisher, category, quantity, release_date,
+		condition, image_filename FROM book WHERE id = #{id}
+	</select>
+	<insert id="insertBook" parameterType="book.BookVO">INSERT INTO book (id, title, price, author,
+		description, publisher, category, quantity, release_date, condition,
+		image_filename)VALUES (#{id}, #{title}, #{price}, #{author},
+		#{description}, #{publisher}, #{category}, #{quantity},
+		#{releaseDate}, #{condition}, #{imageFilename})
+	</insert>
+	<update id="updateBook" parameterType="book.BookVO">UPDATE book SET title = #{title}, price = #{price},
+		author = #{author},
+		publisher = #{publisher}, release_date =
+		#{releaseDate}, description = #{description}, category = #{category}
+		,quantity
+		= #{quantity} ,condition = #{condition} ,image_filename =
+		#{imageFilename}
+		WHERE
+		id = #{id}
+	</update>
+	<delete id="deleteBook" parameterType="string">DELETE FROM book WHERE id = #{id}
+	</delete>
+</mapper>
